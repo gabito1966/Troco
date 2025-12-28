@@ -9,59 +9,33 @@ const STATIC_ASSETS = [
   "/icon-512.png"
 ];
 
-// ==========================
-// INSTALACIÓN
-// ==========================
 self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS)));
   self.skipWaiting();
 });
 
-// ==========================
-// ACTIVACIÓN (limpieza)
-// ==========================
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) return caches.delete(key);
-        })
-      )
+      Promise.all(keys.map(key => key !== CACHE_NAME ? caches.delete(key) : null))
     )
   );
   self.clients.claim();
 });
 
-// ==========================
-// FETCH
-// ==========================
 self.addEventListener("fetch", event => {
   const request = event.request;
-
-  // NO cachear HTML para evitar bugs con cambios frecuentes
-  if (request.headers.get("accept")?.includes("text/html")) {
-    return;
-  }
+  if (request.headers.get("accept")?.includes("text/html")) return;
 
   event.respondWith(
     caches.match(request).then(cached => {
       if (cached) return cached;
-
-      return fetch(request)
-        .then(response => {
-          // Guardar en cache dinámico
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(request, response.clone());
-            return response;
-          });
-        })
-        .catch(() => {
-          // opcional: fallback si falla la red
-          // return caches.match('/offline.html');
+      return fetch(request).then(response => {
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(request, response.clone());
+          return response;
         });
+      }).catch(() => { });
     })
   );
 });

@@ -16,9 +16,6 @@ const resultIds = {
 
 const STORAGE_KEY = "exchangeRates";
 
-// ===============================
-// LOCAL STORAGE
-// ===============================
 function saveRates() {
   const rates = {
     ARS: parseFloat(rateInputs.ARS.value),
@@ -26,24 +23,18 @@ function saveRates() {
     PYG: parseFloat(rateInputs.PYG.value),
     updated: Date.now(),
   };
-
   localStorage.setItem(STORAGE_KEY, JSON.stringify(rates));
 }
 
 function loadRates() {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (!saved) return;
-
   const rates = JSON.parse(saved);
-
   rateInputs.ARS.value = rates.ARS ?? "";
   rateInputs.BRL.value = rates.BRL ?? "";
   rateInputs.PYG.value = rates.PYG ?? "";
 }
 
-// ===============================
-// CONVERSIÓN
-// ===============================
 function convert() {
   const amount = parseFloat(amountInput.value);
   const currency = currencySelect.value;
@@ -71,18 +62,10 @@ function convert() {
   document.getElementById("resPyg").textContent = (usd * pyg).toFixed(0);
 }
 
-// ===============================
-// UTIL
-// ===============================
 function clearResults() {
-  Object.values(resultIds).forEach(
-    id => document.getElementById(id).textContent = "-"
-  );
+  Object.values(resultIds).forEach(id => document.getElementById(id).textContent = "-");
 }
 
-// ===============================
-// EVENTOS
-// ===============================
 amountInput.addEventListener("input", convert);
 currencySelect.addEventListener("change", convert);
 
@@ -93,15 +76,9 @@ Object.values(rateInputs).forEach(input => {
   });
 });
 
-// ===============================
-// INIT
-// ===============================
 loadRates();
 convert();
 
-// ===============================
-// SERVICE WORKER
-// ===============================
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js')
     .then(() => console.log('Service Worker registrado'))

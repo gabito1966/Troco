@@ -4,44 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Monedas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
-  <title>Conversor de Monedas</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#007bff">
-
 </head>
 
 <body>
-
   <div class="app">
     <h1>Conversor de Monedas</h1>
 
     <section class="rates">
       <h2 class="title">Cotizaciones</h2>
-
       <div class="rate-row">
-        <input type="number" id="usdToArs">
+        <input type="number" id="usdToArs" placeholder="ARS">
         <span class="label">ARS</span>
       </div>
-
       <div class="rate-row">
-        <input type="number" id="usdToBrl">
+        <input type="number" id="usdToBrl" placeholder="BRL">
         <span class="label">BRL</span>
       </div>
-
       <div class="rate-row">
-        <input type="number" id="usdToPyg">
+        <input type="number" id="usdToPyg" placeholder="PYG">
         <span class="label">PYG</span>
       </div>
     </section>
 
     <section class="convert">
       <h2 class="title">Monto a Convertir</h2>
-
       <div class="amount-row">
         <input type="number" id="amount" placeholder="Monto">
         <select id="currency">
@@ -55,7 +49,6 @@
 
     <h2 class="title">Moneda Convertida</h2>
 
-
     <section class="results">
       <p>USD: <span id="resUsd">-</span></p>
       <p>ARS: <span id="resArs">-</span></p>
@@ -65,7 +58,6 @@
   </div>
 
   <script src="app.js" defer></script>
-
 </body>
 
 </html>
