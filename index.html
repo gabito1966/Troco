@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Conversor de Monedas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#007bff">
+
+</head>
+
+<body>
+
+  <div class="app">
+    <h1>Conversor de Monedas</h1>
+
+    <section class="rates">
+      <h2 class="title">Cotizaciones</h2>
+
+      <div class="rate-row">
+        <input type="number" id="usdToArs">
+        <span class="label">ARS</span>
+      </div>
+
+      <div class="rate-row">
+        <input type="number" id="usdToBrl">
+        <span class="label">BRL</span>
+      </div>
+
+      <div class="rate-row">
+        <input type="number" id="usdToPyg">
+        <span class="label">PYG</span>
+      </div>
+    </section>
+
+    <section class="convert">
+      <h2 class="title">Monto a Convertir</h2>
+
+      <div class="amount-row">
+        <input type="number" id="amount" placeholder="Monto">
+        <select id="currency">
+          <option value="USD">USD</option>
+          <option value="ARS">ARS</option>
+          <option value="BRL">BRL</option>
+          <option value="PYG">PYG</option>
+        </select>
+      </div>
+    </section>
+
+    <h2 class="title">Moneda Convertida</h2>
+
+
+    <section class="results">
+      <p>USD: <span id="resUsd">-</span></p>
+      <p>ARS: <span id="resArs">-</span></p>
+      <p>BRL: <span id="resBrl">-</span></p>
+      <p>PYG: <span id="resPyg">-</span></p>
+    </section>
+  </div>
+
+  <script src="app.js" defer></script>
+
+</body>
+
+</html>
