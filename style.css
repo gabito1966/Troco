@@ -144,3 +144,27 @@ input {
     font-size: 1.4rem;
     font-weight: 700;
 }
+
+.footer {
+    background-color: #CDCAE2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(26, 35, 50, 0.8);
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    align-items: center;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.logo {
+    width: 24px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 8px;
+}
